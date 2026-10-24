@@ -1,0 +1,27 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; }
+body {
+  background: radial-gradient(ellipse at 30% 40%, #8a8a94 0%, #5d5d66 60%, #4a4a52 100%);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+#clock { position: absolute; top: 56px; right: 80px; text-align: right; }
+#time { font-size: 40px; font-weight: 600; letter-spacing: 1px; }
+#date { font-size: 18px; opacity: .6; margin-top: 4px; }
+
+#menu { position: absolute; left: 160px; top: 50%; list-style: none; transform: translateY(0); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+#menu li {
+  position: relative; height: 112px; line-height: 112px; padding-left: 36px;
+  font-size: 84px; font-weight: 800; letter-spacing: -2px; white-space: nowrap;
+  color: rgba(255,255,255,.22); transition: color .25s, transform .25s;
+}
+#menu li::before {
+  content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 8px;
+  background: var(--c); border-radius: 2px; opacity: 0; transform: scaleY(.4); transition: opacity .25s, transform .25s;
+}
+#menu li.focus { color: #fff; transform: translateX(14px); }
+#menu li.focus::before { opacity: 1; transform: scaleY(1); }
+#menu li.near { color: rgba(255,255,255,.4); }
+
+#sweep { position: fixed; left: 0; top: 0; height: 112px; width: 0; background: var(--c, #e50914); z-index: 5; pointer-events: none; }
+#sweep.go { transition: width .45s cubic-bezier(.7,0,.3,1); width: 1920px; }
